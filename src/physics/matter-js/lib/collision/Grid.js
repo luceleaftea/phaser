@@ -196,12 +196,12 @@ var Common = require('../core/Common');
      * @return {} region
      */
     Grid._createRegion = function(startCol, endCol, startRow, endRow) {
-        return { 
+        return {
             id: startCol + ',' + endCol + ',' + startRow + ',' + endRow,
-            startCol: startCol, 
-            endCol: endCol, 
-            startRow: startRow, 
-            endRow: endRow 
+            startCol: startCol,
+            endCol: endCol,
+            startRow: startRow,
+            endRow: endRow
         };
     };
 
@@ -243,7 +243,8 @@ var Common = require('../core/Common');
         for (var i = 0; i < bucket.length; i++) {
             var bodyB = bucket[i];
 
-            if (body.id === bodyB.id || (body.isStatic && bodyB.isStatic))
+            // Removed a || (body.isStatic && bodyB.isStatic) check from this because I am abusing static in a way it should not be - if the game is running too inefficiently, check here
+            if (body.id === bodyB.id)
                 continue;
 
             // keep track of the number of buckets the pair exists in
@@ -317,5 +318,5 @@ var Common = require('../core/Common');
 
         return pairs;
     };
-    
+
 })();
